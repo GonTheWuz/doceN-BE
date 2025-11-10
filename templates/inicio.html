@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% extends "base.html" %} {% load static %} {% block title %} joel me mira mucho
+{% endblock title %} {% block content %}
+<section class="flex flex-col items-center justify-center h-screen">
+  <div
+    class="flex flex-col bg-white dark:bg-slate-600 shadow-xl rounded-2xl p-12 text-center max-w-lg"
+  >
+    <h1 class="text-5xl font-bold mb-4 text-green-400">Zangano master</h1>
+    <p class="text-2xl text-yellow-300">
+      Gran youtuber mejor persona, se cago en los muertos de un subscriptor
+    </p>
+    <img src="{% static 'images/lisa.jpeg' %}" alt="queso" width="150" />
+  </div>
+  {% block person %}
+  <div>
+    <ul>
+      {% for person in persons %}
+      <a href="/task2/task5/{{person.slug}}">
+        <a href="{% url 'people:person' slug=person.slug %}">
+          <li>
+            {{ person.name }}, ( {{ person.birth }} ),
+            <img
+              src="{{ person.propic.url }}"
+              alt="Foto de {{ person.name }}"
+              width="150"
+            />
+          </li>
+        </a>
+      </a>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endblock %}
+</section>
+{% endblock %}

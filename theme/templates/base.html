@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+{% load static tailwind_tags %}
+<html lang="en">
+  <head>
+    <title>{% block title %} default content {% endblock %}</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    {% tailwind_css %}
+  </head>
+
+  <body class=".container black:black-500">
+    <header class="bg-gray-900 shadow-md">
+      <nav class="flex justify-center space-x-6 py-4">
+        <a
+          href="{% url 'pagprinci' %}"
+          class="text-3xl text-white font-bold hover:text-pink-500"
+        >
+          Pagina Principal
+        </a>
+
+        <a
+          href="{% url 'people:home' %}"
+          class="text-3xl text-white font-bold hover:text-purple-500"
+        >
+          Pagina de APP
+        </a>
+
+        <a
+          href="{% url 'users:login' %}"
+          class="text-3xl text-white font-bold hover:text-green-500"
+        >
+          Login
+        </a>
+
+        {% if user.is_authenticated %}
+
+        <form action="{% url 'users:logout' %}" method="post">
+          {% csrf_token %}
+          <button class="text-3xl text-white font-bold hover:text-yellow-500">
+            Logout
+          </button>
+        </form>
+
+        <p class="text-3xl text-white font-bold hover:text-orange-500">
+          User: {{user.username}}
+        </p>
+
+        <a
+          href="{% url 'users:producto' %}"
+          class="text-3xl text-white font-bold hover:text-red-500"
+          >Producto</a
+        >
+
+        {% else %}
+
+        <a
+          href="{% url 'users:home' %}"
+          class="text-3xl text-white font-bold hover:text-blue-500"
+        >
+          Users
+        </a>
+        {% endif %}
+      </nav>
+    </header>
+    <div class="container mx-auto">
+      {% block content %} botones arriba unga unga {% block person %}
+      <div></div>
+      {% endblock %}
+    </div>
+    {% endblock %}
+  </body>
+</html>
