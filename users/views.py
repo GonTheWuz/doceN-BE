@@ -36,7 +36,7 @@ def logout_user(request):
         return redirect('/')
 
 @login_required(login_url="/users/login/")
-def product_list_view(request):
+def product_list_view(request): 
     if request.method == 'POST':
         form = UploadProduct(request.POST)
         if form.is_valid():

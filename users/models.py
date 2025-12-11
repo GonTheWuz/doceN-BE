@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 CASAS = [
     ('CAS', 'Casa'),
-    ('DEP','Departamneto'),
+    ('DEP','Departamento'),
     ('TER','Terreno')
 ]
 
